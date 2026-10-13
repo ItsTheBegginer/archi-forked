@@ -182,6 +182,23 @@ WHERE conversation_id = %s AND (user_id = %s OR client_id = %s);
 """
 
 # =============================================================================
+# Conversation Rename Queries
+# =============================================================================
+
+SQL_RENAME_CONVERSATION = """
+UPDATE conversation_metadata
+SET title = %s
+WHERE conversation_id = %s AND client_id = %s;
+"""
+
+# User-ID-based variant (authenticated users, also falls back to client_id).
+SQL_RENAME_CONVERSATION_BY_USER = """
+UPDATE conversation_metadata
+SET title = %s
+WHERE conversation_id = %s AND (user_id = %s OR client_id = %s);
+"""
+
+# =============================================================================
 # Conversation Pin / Archive Queries
 # =============================================================================
 
